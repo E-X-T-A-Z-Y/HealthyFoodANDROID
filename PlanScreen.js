@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // <-- useState імпортується ТУТ, з 'react'
+import React, { useState } from 'react'; 
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, SafeAreaView } from 'react-native';
 
 // Допоміжні компоненти (кнопки і картки) 
