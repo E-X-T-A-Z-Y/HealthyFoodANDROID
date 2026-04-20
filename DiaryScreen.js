@@ -15,7 +15,7 @@ const ProgressBar = ({ label, current, total, color }) => (
 );
 
 export default function DiaryScreen({ navigation }) {
-  const { mealsData, foodDataList } = useContext(FoodContext);
+  const { mealsData, foodDataList, dailyGoal } = useContext(FoodContext);
   const [activeMeal, setActiveMeal] = useState('Сніданок');
   const meals = ['Сніданок', 'Обід', 'Вечеря', 'Перекус'];
 
@@ -39,7 +39,7 @@ export default function DiaryScreen({ navigation }) {
     });
   });
 
-  const goalCalories = 2000;
+const goalCalories = dailyGoal;
   
   const isOverLimit = totalEaten > goalCalories;
   const remaining = isOverLimit ? totalEaten - goalCalories : goalCalories - totalEaten;

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'; 
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, SafeAreaView } from 'react-native';
+import { useContext } from 'react';
+import { FoodContext } from './FoodContext';
 
 // Допоміжні компоненти (кнопки і картки) 
 const GoalOption = ({ label, isSelected, onPress }) => (
@@ -21,6 +23,7 @@ const MealCard = ({ title, imageSource }) => (
 // ГОЛОВНА ФУНКЦІЯ ЕКРАНУ
 export default function PlanScreen() {
   const [selectedGoal, setSelectedGoal] = useState('lose_weight');
+  const { setDailyGoal } = useContext(FoodContext);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -32,17 +35,26 @@ export default function PlanScreen() {
           <GoalOption 
             label="Втратити вагу" 
             isSelected={selectedGoal === 'lose_weight'} 
-            onPress={() => setSelectedGoal('lose_weight')} 
+            onPress={() => {
+              setSelectedGoal('lose_weight');
+              setDailyGoal(1600); // Відправляємо нову норму калорій
+            }} 
           />
           <GoalOption 
             label="Підтримувати вагу" 
             isSelected={selectedGoal === 'maintain_weight'} 
-            onPress={() => setSelectedGoal('maintain_weight')} 
+            onPress={() => {
+              setSelectedGoal('maintain_weight');
+              setDailyGoal(2000);
+            }} 
           />
           <GoalOption 
             label="Набирати м'язову вагу" 
             isSelected={selectedGoal === 'gain_muscle'} 
-            onPress={() => setSelectedGoal('gain_muscle')} 
+            onPress={() => {
+              setSelectedGoal('gain_muscle');
+              setDailyGoal(2500);
+            }} 
           />
         </View>
 
